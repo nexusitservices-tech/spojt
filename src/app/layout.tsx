@@ -9,12 +9,11 @@ import { Analytics } from "@vercel/analytics/next"
 
 import { baseURL, meta } from "@/resources/seo";
 import { fonts, style, dataStyle } from "@/resources/once-ui.config";
-import { Meta, Schema,  Column, Flex, Mask, MatrixFx, ThemeInit} from "@once-ui-system/core";
+import { Meta, Schema, Column, Flex, ThemeInit } from "@once-ui-system/core";
 import { Providers } from '@/components/Providers';
 import { Geist } from "next/font/google";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -70,24 +69,10 @@ export default function RootLayout({
             'viz-style': dataStyle.variant,
           }}
         />
-        <link rel="preload" href="https://vbr.nathanchung.dev/badge?page_id=spojt&&lcolor=151515&color=151515&style=for-the-badge&text=non unique visitors" as="image" />
-        <link rel="preload" href="https://vbr.nathanchung.dev/badge?page_id=spojt&&lcolor=EDEDED&color=EDEDED&style=for-the-badge&text=non unique visitors" as="image" />
-
       </head>
       <Providers>
         <Column as="body" background="page" fillWidth margin="0" padding="0">
-          <Column fillWidth maxHeight="100dvh" aspectRatio="1" horizontal="center" position="absolute" top="0" left="0">
-            {/* <Mask maxWidth="m" x={50} y={0} radius={50}>
-              <MatrixFx
-                size={1.5}
-                spacing={5}
-                fps={24}
-                colors={["brand-solid-strong"]}
-                flicker
-              />
-            </Mask> */}
-          </Column>
-          <Analytics/>
+          <Analytics />
           {children}
         </Column>
       </Providers>

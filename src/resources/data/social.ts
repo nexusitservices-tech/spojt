@@ -1,13 +1,13 @@
 export interface SocialLink {
   platform: string;
   href: string;
-  icon: "github" | "linkedin" | "threads";
+  icon: "github" | "linkedin" | "twitter";
 }
 
 export const socialLinks: SocialLink[] = [
   {
     platform: "GitHub",
-    href: "https://github.com/basalt3/spojt",
+    href: "#",
     icon: "github",
   },
   {
@@ -16,8 +16,8 @@ export const socialLinks: SocialLink[] = [
     icon: "linkedin",
   },
   {
-    platform: "Threads",
+    platform: "Twitter",
     href: "#",
-    icon: "threads",
+    icon: "twitter",
   },
 ];

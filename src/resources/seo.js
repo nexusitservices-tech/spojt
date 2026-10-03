@@ -1,26 +1,22 @@
-// IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
-const baseURL = "https://spojt.vercel.app";
+const baseURL = "https://nexus-it-services.vercel.app";
 
-// metadata for pages
 const meta = {
   home: {
     path: "/",
-    title: "Spojt — The new Atomic UI Registry",
+    title: "Nexus IT Services — Empowering Business Through Technology",
     description:
-      "A high-contrast, minimalist foundation for building and distributing design systems. Engineered for technical speed and architectural clarity.",
+      "Nexus IT Services delivers enterprise-grade cloud infrastructure, cybersecurity, managed IT, and data analytics solutions. Trusted by 500+ organizations worldwide.",
     image: "/images/og/og.png",
-    canonical: "https://spojt.vercel.app",
+    canonical: "https://nexus-it-services.vercel.app",
     robots: "index,follow",
-    alternates: [{ href: "https://spojt.vercel.app", hrefLang: "en" }],
+    alternates: [{ href: "https://nexus-it-services.vercel.app", hrefLang: "en" }],
   },
-  // add more routes and reference them in page.tsx
 };
 
-// default schema data
 const schema = {
   logo: "",
-  type: "SAAS",
-  name: "Spojt",
+  type: "Business",
+  name: "Nexus IT Services",
   description: meta.home.description,
 };
 

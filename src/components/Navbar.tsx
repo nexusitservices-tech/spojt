@@ -2,7 +2,6 @@
 import {
   Row,
   Text,
-  Media,
   SmartLink,
   ThemeSwitcher,
   Button,
@@ -13,8 +12,7 @@ import {
 } from "@once-ui-system/core";
 import { navigationLinks } from "@/resources/data/navigation";
 import { links } from "@/resources/constants/links";
-import { fonts } from "@/resources/once-ui.config";
-import { spojtConfig } from "@/resources/spojt.config";
+import { nexusConfig } from "@/resources/spojt.config";
 
 import { useState } from "react";
 
@@ -34,34 +32,32 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
   return (
     <Row
       fillWidth
-      paddingX={"l"}
+      paddingX="l"
       horizontal="between"
       vertical="center"
       paddingY={1}
       className={className}
+      id="navbarRow"
     >
       <Row center gap="m">
         <Row center gap="s">
-          <Media src="/logo.svg" alt="Spojt" width={1.5} height={1.5} light />
-          <Media
-            src="/logo.svg"
-            alt="Spojt"
-            width={1.5}
-            height={1.5}
-            dark
-            className="invertMax"
-          />
+          <div className="nexus-logo">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6 6L6 26L10 26L10 13L22 26L26 26L26 6L22 6L22 19L10 6L6 6Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
           <Text variant="heading-default-xl" onBackground="neutral-strong">
-            <span style={{ fontFamily: fonts.bitcount.style.fontFamily }}>
-              Spojt
-            </span>
+            Nexus<span className="nexus-logo-accent">IT</span>
           </Text>
         </Row>
-        {spojtConfig.utilities.navLinks && (
+        {nexusConfig.utilities.navLinks && (
           <Row center gap="m" id="navLinks">
             {navigationLinks.map((link) => (
               <SmartLink key={link.label} href={link.href}>
-                <Text variant="code-default-xs">
+                <Text variant="label-default-s">
                   <b>{link.label}</b>
                 </Text>
               </SmartLink>
@@ -69,43 +65,20 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
           </Row>
         )}
       </Row>
-      <Row center gap={"m"} id="navButtonsContainer">
-        {spojtConfig.utilities.themeSwitcher && (
+      <Row center gap="m" id="navButtonsContainer">
+        {nexusConfig.utilities.themeSwitcher && (
           <ThemeSwitcher id="themeSwitcher" />
         )}
         <Button
           variant="secondary"
           size="s"
           id="navButton"
-          href={links.basalt3}
+          href={links.contact}
         >
-          <Text variant="label-default-s">
-            <Row gap="0" center>
-              <Media
-                src="/trademarks/b3.png"
-                alt="BASALT3"
-                width={1.5}
-                height={1.5}
-                light
-              />
-              <Media
-                src="/trademarks/b3.png"
-                alt="BASALT3"
-                width={1.5}
-                height={1.5}
-                dark
-                className="invertMax"
-              />
-              BASALT3&nbsp;&nbsp;
-            </Row>
-          </Text>
+          <Text variant="label-default-s">CONTACT</Text>
         </Button>
-        <Button size="s" id="navButton" href={links.getStarted}>
-          <Text variant="label-default-s">
-            <Row gap="xs" center>
-              GET STARTED
-            </Row>
-          </Text>
+        <Button size="s" id="navButtonPrimary" href={links.getStarted}>
+          <Text variant="label-default-s">GET STARTED</Text>
         </Button>
 
         <DropdownWrapper
@@ -124,10 +97,10 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
               padding="4"
               gap="2"
               background="neutral-medium"
-            
             >
               {navigationLinks.map((link) => (
                 <Option
+                  key={link.label}
                   label={link.label}
                   onClick={() => handleSelect(link.label)}
                   value={link.label}

@@ -1,18 +1,19 @@
-// config
-export const spojtConfig = {
+export const nexusConfig = {
   components: {
     navbar: true,
     hero: true,
-    libraries: true,
+    stats: true,
+    services: true,
+    whyChooseUs: true,
+    process: true,
+    testimonials: true,
+    cta: true,
     footer: true,
   },
 
   utilities: {
     themeSwitcher: true,
-    matrixFx: true,
-    autoScroll: true,
-    highlighter: true,
     navLinks: true,
-    visitorCounter: true,
+    matrixFx: false,
   },
 };

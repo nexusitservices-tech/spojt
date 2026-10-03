@@ -1,13 +1,17 @@
-import React from "react";
-import { Row, Text, IconButton, Media } from "@once-ui-system/core";
+"use client";
+import {
+  Row,
+  Text,
+  IconButton,
+  Column,
+  SmartLink,
+} from "@once-ui-system/core";
 import {
   GithubLogoIcon,
   LinkedinLogoIcon,
-  ThreadsLogoIcon,
+  XLogoIcon,
 } from "@phosphor-icons/react";
-import { socialLinks } from "@/resources/data/social";
-import { fonts } from "@/resources/once-ui.config";
-import { spojtConfig } from "@/resources/spojt.config";
+import { navigationLinks } from "@/resources/data/navigation";
 
 interface FooterProps extends React.ComponentProps<typeof Row> {}
 
@@ -15,69 +19,144 @@ export const Footer: React.FC<FooterProps> = ({ ...flex }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Row
+    <Column
       fillWidth
       horizontal="center"
       borderTop="neutral-alpha-weak"
-      s={{ direction: "column" }}
-      paddingY={"xs"}
+      paddingY="l"
+      paddingX="l"
+      gap="l"
+      id="footerSection"
       {...flex}
     >
       <Row
         maxWidth="m"
-        paddingX="l"
-        gap="16"
+        fillWidth
+        horizontal="between"
+        vertical="start"
+        id="footerMain"
+        gap="xl"
+      >
+        <Column gap="m" maxWidth={32}>
+          <Row center gap="s">
+            <div className="nexus-logo">
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M6 6L6 26L10 26L10 13L22 26L26 26L26 6L22 6L22 19L10 6L6 6Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <Text variant="heading-default-l" onBackground="neutral-strong">
+              Nexus<span className="nexus-logo-accent">IT</span>
+            </Text>
+          </Row>
+          <Text
+            variant="body-default-s"
+            onBackground="neutral-weak"
+            style={{ maxWidth: "40ch" }}
+          >
+            Enterprise-grade IT services that keep your business secure, scalable,
+            and ahead of the technology curve. Trusted by 500+ organizations
+            worldwide since 2009.
+          </Text>
+          <Row gap="8" vertical="center" id="footerSocial">
+            <IconButton size="s" variant="ghost" href="#" icon="github">
+              <GithubLogoIcon />
+            </IconButton>
+            <IconButton size="s" variant="ghost" href="#" icon="linkedin">
+              <LinkedinLogoIcon />
+            </IconButton>
+            <IconButton size="s" variant="ghost" href="#" icon="twitter">
+              <XLogoIcon />
+            </IconButton>
+          </Row>
+        </Column>
+
+        <Column gap="s" className="footer-links">
+          <Text variant="label-default-m" onBackground="neutral-strong">
+            NAVIGATE
+          </Text>
+          {navigationLinks.map((link) => (
+            <SmartLink key={link.label} href={link.href}>
+              <Text variant="body-default-s" onBackground="neutral-weak">
+                {link.label}
+              </Text>
+            </SmartLink>
+          ))}
+        </Column>
+
+        <Column gap="s" className="footer-links">
+          <Text variant="label-default-m" onBackground="neutral-strong">
+            SERVICES
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            Cloud Infrastructure
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            Cybersecurity
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            Managed IT Services
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            Data & Analytics
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            Custom Software
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            IT Consulting
+          </Text>
+        </Column>
+
+        <Column gap="s" className="footer-links">
+          <Text variant="label-default-m" onBackground="neutral-strong">
+            CONTACT
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            1-800-NEXUS-IT
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            hello@nexusit.com
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            100 Tech Plaza, Suite 500
+          </Text>
+          <Text variant="body-default-s" onBackground="neutral-weak">
+            San Francisco, CA 94105
+          </Text>
+        </Column>
+      </Row>
+
+      <Row
+        maxWidth="m"
+        fillWidth
         horizontal="between"
         vertical="center"
-        id="footer"
+        id="footerBottom"
       >
-        <Text variant="label-default-xs" onBackground="neutral-strong">
-          <Text onBackground="neutral-weak">© {currentYear} /</Text>
-          <Text
-            paddingX="4"
-            style={{ fontFamily: fonts.bitcount.style.fontFamily }}
-          >
-            Spojt
-          </Text>
-          <Text onBackground="neutral-weak">/ All rights reserved</Text>
+        <Text variant="label-default-xs" onBackground="neutral-weak">
+          &copy; {currentYear} Nexus IT Services. All rights reserved.
         </Text>
-        <Row gap="8" vertical="center" id="socialLinks">
-          <Row gap="8">
-            {" "}
-            {socialLinks.map((link) => (
-              <IconButton
-                key={link.platform}
-                size="s"
-                variant="ghost"
-                href={link.href}
-                icon={link.icon}
-              >
-                {link.icon === "github" && <GithubLogoIcon />}
-                {link.icon === "linkedin" && <LinkedinLogoIcon />}
-                {link.icon === "threads" && <ThreadsLogoIcon />}
-              </IconButton>
-            ))}
-          </Row>
-
-          {spojtConfig.utilities.visitorCounter && (
-            <div id="visitorCounter">
-              {" "}
-              <Media
-                src="https://vbr.nathanchung.dev/badge?page_id=spojt&&lcolor=151515&color=151515&style=for-the-badge&text=non unique visitors"
-                unoptimized
-                id="counter"
-                dark
-              />
-              <Media
-                src="https://vbr.nathanchung.dev/badge?page_id=spojt&&lcolor=EDEDED&color=EDEDED&style=for-the-badge&text=non unique visitors"
-                unoptimized
-                id="counter"
-                light
-              />
-            </div>
-          )}
+        <Row gap="m" vertical="center" id="footerLegal">
+          <SmartLink href="#">
+            <Text variant="label-default-xs" onBackground="neutral-weak">
+              Privacy Policy
+            </Text>
+          </SmartLink>
+          <SmartLink href="#">
+            <Text variant="label-default-xs" onBackground="neutral-weak">
+              Terms of Service
+            </Text>
+          </SmartLink>
+          <SmartLink href="#">
+            <Text variant="label-default-xs" onBackground="neutral-weak">
+              SLA
+            </Text>
+          </SmartLink>
         </Row>
       </Row>
-    </Row>
+    </Column>
   );
 };

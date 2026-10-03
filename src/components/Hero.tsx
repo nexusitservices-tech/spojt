@@ -1,169 +1,99 @@
 "use client";
-import { useState } from "react";
 import {
   Row,
   Text,
   Flex,
-  Mask,
-  MatrixFx,
   Button,
-  StylePanel,
-  IconButton,
-  DropdownWrapper,
-  StyleOverlay,
+  Column,
 } from "@once-ui-system/core";
-import { Highlighter } from "@/components/ui/highlighter";
-import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
+import {
+  ArrowUpRightIcon,
+  ShieldCheckIcon,
+  LightningIcon,
+  GlobeIcon,
+} from "@phosphor-icons/react/dist/ssr";
 import { links } from "@/resources/constants/links";
-import { fonts } from "@/resources/once-ui.config";
-import { spojtConfig } from "@/resources/spojt.config";
-import { PaletteIcon } from "@phosphor-icons/react";
 
-interface HeroProps {
-  className?: string;
-}
-
-export const Hero: React.FC<HeroProps> = ({ className }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("");
-
-  const handleSelect = (value: string) => {
-    setSelected(value);
-    setIsOpen(false);
-  };
+export const Hero: React.FC = () => {
   return (
-    <Row
+    <Column
       fillWidth
-      paddingX={"l"}
-      paddingY={"l"}
-      fillHeight
-      id="heroRow"
-      className={className}
+      paddingX="l"
+      paddingY="xl"
+      horizontal="center"
+      vertical="center"
+      gap="l"
+      id="heroSection"
     >
-      {spojtConfig.utilities.matrixFx && (
-        <>
-          <Mask
-            maxWidth="m"
-            x={50}
-            y={50}
-            radius={41}
-            position="absolute"
-            id="heroMobileMatrix"
-          >
-            <MatrixFx
-              size={1.5}
-              spacing={6}
-              fps={90}
-              colors={["brand-solid-medium"]}
-              flicker
-              opacity={80}
-            />
-          </Mask>
-
-          <Mask
-            maxWidth="m"
-            x={25}
-            y={50}
-            radius={34}
-            position="absolute"
-            id="heroMatrix"
-          >
-            <MatrixFx
-              size={1.9}
-              spacing={6}
-              fps={90}
-              colors={["brand-solid-strong"]}
-              flicker
-              opacity={80}
-            />
-          </Mask>
-        </>
-      )}
-      <Flex fillWidth flex={1} center>
-        <Text
-          variant="display-default-l"
-          onBackground="neutral-strong"
-          style={{ fontFamily: "var(--font-questrial)" }}
-          id="heroTextLeft"
-        >
-          The <span>new</span> Atomic UI
-          <span style={{ fontFamily: fonts.bitcount.style.fontFamily }}>
-            {" "}
-            Registry
-          </span>
-          .
+      <Flex direction="row" gap="s" center className="hero-badge">
+        <ShieldCheckIcon size={18} weight="fill" />
+        <Text variant="label-default-xs" onBackground="neutral-weak">
+          SOC 2 Type II Certified &middot; ISO 27001 Compliant
         </Text>
       </Flex>
-      <Flex
-        direction="column"
-        fillWidth
-        flex={1}
-        center
-        id="heroRightContainer"
-      >
+
+      <Column fillWidth horizontal="center" gap="m" maxWidth={60}>
+        <Text
+          variant="display-default-xl"
+          onBackground="neutral-strong"
+          className="hero-headline"
+          style={{ textAlign: "center" }}
+        >
+          Empowering Business Through
+          <br />
+          <span className="hero-gradient-text">Intelligent Technology</span>
+        </Text>
         <Text
           variant="body-default-l"
           onBackground="neutral-weak"
-          className="lh"
-          id="heroTextRight"
+          className="hero-subtext"
+          style={{ textAlign: "center", maxWidth: "52ch" }}
         >
-          A high-contrast, minimalist foundation for building and distributing{" "}
-          {spojtConfig.utilities.highlighter ? (
-            <Highlighter action="underline" color="var(--brand-solid-strong)">
-              design systems
-            </Highlighter>
-          ) : (
-            <span>design systems</span>
-          )}
-          . Engineered for technical speed and architectural clarity.
+          From cloud infrastructure to cybersecurity, managed IT to data analytics,
+          Nexus delivers enterprise-grade solutions that keep your business secure,
+          scalable, and ahead of the curve.
         </Text>
-        <Row
-          vertical="center"
-          horizontal="start"
-          fillWidth
-          gap={"m"}
-          id="heroButtons"
-        >
-          <Button href={links.getStarted}>
-            <Text variant="label-default-s">
-              <Row gap="xs" center>
-                GET STARTED <ArrowUpRightIcon />
-              </Row>
-            </Text>
-          </Button>
-          <Button variant="secondary" href={links.learnMore}>
-            <Text variant="label-default-s">
-              <Row gap="xs" center>
-                LEARN MORE <ArrowUpRightIcon />
-              </Row>
-            </Text>
-          </Button>
+      </Column>
 
-          <StyleOverlay
-            radius="m"
-            background="neutral-medium"
-            onBackground="neutral-strong"
-            fillHeight
-            maxWidth={25}
-            data-scaling="90"
-            fillWidth
-            style={{
-              position: "fixed",
-              top: 0,
-              bottom: 0,
-              right: 0,
-              marginInlineEnd: 0,
-              width: "100svw",
-              height: "100svh",
-            }}
-          >
-            <IconButton variant="secondary" size="l">
-              {" "}
-              <PaletteIcon />
-            </IconButton>
-          </StyleOverlay>
+      <Row gap="m" center id="heroButtons">
+        <Button href={links.getStarted} size="l">
+          <Row gap="xs" center>
+            Schedule a Consultation <ArrowUpRightIcon weight="bold" />
+          </Row>
+        </Button>
+        <Button variant="secondary" href={links.learnMore} size="l">
+          <Row gap="xs" center>
+            Explore Services <ArrowUpRightIcon weight="bold" />
+          </Row>
+        </Button>
+      </Row>
+
+      <Row
+        fillWidth
+        horizontal="center"
+        gap="xl"
+        paddingY="l"
+        id="heroFeatureRow"
+      >
+        <Row gap="s" center>
+          <LightningIcon size={20} weight="fill" className="hero-feature-icon" />
+          <Text variant="label-default-s" onBackground="neutral-weak">
+            99.99% Uptime SLA
+          </Text>
         </Row>
-      </Flex>
-    </Row>
+        <Row gap="s" center>
+          <GlobeIcon size={20} weight="fill" className="hero-feature-icon" />
+          <Text variant="label-default-s" onBackground="neutral-weak">
+            24/7 Global Support
+          </Text>
+        </Row>
+        <Row gap="s" center>
+          <ShieldCheckIcon size={20} weight="fill" className="hero-feature-icon" />
+          <Text variant="label-default-s" onBackground="neutral-weak">
+            Security-First Approach
+          </Text>
+        </Row>
+      </Row>
+    </Column>
   );
 };
