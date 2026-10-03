@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "shaders": {
+      "enabled": true
+    },
+    "tripo3d": {
+      "enabled": true
+    },
+    "better_design": {
+      "enabled": true
+    }
+  }
+}
